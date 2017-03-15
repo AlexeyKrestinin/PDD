@@ -34,22 +34,33 @@ class DataLoader {
         guard let bilets = json as? [[String:Any]] else {
             fatalError("Ошибка, не могу прочитать билет")
         }
-        
         var biletName = "Номер билета"
-        var questions = [Question] ()
-        for element in bilets {
-            if let slovar = element as? [String:Any] {
-//                print ("\(slovar)")
-                if let aQuestion = Question(json:slovar) {
-                        questions.append(aQuestion)
-                }
-            }
-        }
         
+        var questions = [Question] ()
+        
+//        guard var slovar = bilets[0] as? [String:Any] else {
+//          fatalError("Проблема со словарем по индексу 0")
+//        }
+//        for element in slovar {
+//            if let aQuestion = Question(json: element){
+//            questions.append(aQuestion)
+//            }
+//        }
+        for element in bilets {
+//                print ("\(slovar)")
+            if let aQuestion = Question(json:element){
+//                    print ("\(aQuestion)")
+                        questions.append(aQuestion)
+            }
+        
+        }
+        if questions.count == 0 {
+            fatalError("Не создано ни одного вопроса")
+        }
      
         
 //        guard let bilet = bilets[0] as? [String:Any] else {
-//            fatalError("ебись конем")
+//            fatalError("ошибка")
 //        }
 //        print ("\(bilet)")
         

@@ -83,7 +83,7 @@ class PddViewController: UIViewController {
         }, completion: { finished in
             // эта часть вызывается по завершении анимации
             self.questionText.text = self.currentQuestion?.title
-            self.imageView.image = self.currentQuestion?.image
+//            self.imageView.image = self.currentQuestion?.image
             
             UIView.animate(withDuration: duration, animations: {
                 self.questionText.alpha = 1
@@ -125,7 +125,7 @@ extension PddViewController:UITableViewDelegate {
         
         // проверим наш ответ
         //
-        let selectedAnswer = currentQuestion?.v[indexPath.row]
+        let selectedAnswer = currentQuestion?.answers[indexPath.row]
         if currentQuestion?.answerIsCorrect(answer: selectedAnswer!) ?? false { // ?? false - значит, что если в нашем опциональном значении Bool пусто то просто вернем false
             score += 1
         }
@@ -154,7 +154,7 @@ extension PddViewController:UITableViewDelegate {
 extension PddViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // если вдруг у нас нет текущего вопроса, то мы передадим значение по умолчанию
-        return self.currentQuestion?.v.count ?? 0
+        return self.currentQuestion?.answers.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -165,7 +165,7 @@ extension PddViewController: UITableViewDataSource {
         // 0 я ячейка - 0 ответ
         // 1 я ячейка - 1 ответ итд
         
-        cell.textLabel?.text = currentQuestion?.v[indexPath.row]
+        cell.textLabel?.text = currentQuestion?.answers[indexPath.row]
         
         return cell
         
