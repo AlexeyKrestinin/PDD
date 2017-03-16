@@ -26,7 +26,7 @@ class DataLoader {
         
         // объект типа Any, который почти готов к использованию
         let json = try! JSONSerialization.jsonObject(with: data, options:[])
-     
+        
         // преобраззовали тип Any в [String:Any]
         // будет создан объект, описывающий содержимое файла
         // у него будут ключи - строки и значения - все, что угодно.
@@ -35,21 +35,21 @@ class DataLoader {
             fatalError("Ошибка, не могу прочитать билет")
         }
         
+        
+        
         var questions = [Question] ()
         
-
-        for element in bilets {
-//                print ("\(slovar)")
-            if let aQuestion = Question(json:element){
-//                    print ("\(aQuestion)")
-                        questions.append(aQuestion)
-            }
         
+        for element in bilets {
+            if let aQuestion = Question(json:element){
+                questions.append(aQuestion)
+            }
+            
         }
         if questions.count == 0 {
             fatalError("Не создано ни одного вопроса")
         }
-     
+        
         return (questions)
     }
 }

@@ -9,8 +9,8 @@
 import UIKit
 
 class PddViewController: UIViewController {
-
-//------------------------------- STORYBOARD
+    
+    //------------------------------- STORYBOARD
     @IBOutlet var imageView: UIImageView!
     
     @IBOutlet var questionText: UILabel!
@@ -19,9 +19,9 @@ class PddViewController: UIViewController {
     
     @IBOutlet var progressView: UIProgressView!
     
-//------------------------------- END STORYBOARD
+    //------------------------------- END STORYBOARD
     
-//------------------------------- PROPERTIES
+    //------------------------------- PROPERTIES
     
     // это вычисляемое свойство которое позволяет понять, виден ли вью нашего
     var isOnScreen:Bool {
@@ -54,24 +54,21 @@ class PddViewController: UIViewController {
         }
     }
     
-   
     
+    //------------------------------- END PROPERTIES
     
-
-//------------------------------- END PROPERTIES
-    
-//------------------------------- VIEWDIDLOAD
+    //------------------------------- VIEWDIDLOAD
     override func viewDidLoad() {
         super.viewDidLoad()
         setup ()
         // Do any additional setup after loading the view.
     }
     
-//------------------------------- END VIEWDIDLOAD
+    //------------------------------- END VIEWDIDLOAD
     
-//------------------------------- METODS
+    //------------------------------- METODS
     
-    // Подготовка к переходу на экран с результатом 
+    // Подготовка к переходу на экран с результатом
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // если мы переходим на resultViewCOntroller
@@ -86,7 +83,7 @@ class PddViewController: UIViewController {
     
     private func updateViews () {
         
-       
+        
         let sectionsToReload = IndexSet(integer: 0)
         self.tableView.reloadSections(sectionsToReload, with: isOnScreen ? .left : .none) // вместо reloadData, при использовании анимации
         
@@ -128,13 +125,14 @@ class PddViewController: UIViewController {
         let loader = DataLoader()
         let result = loader.loadData(fileName: "b2")
         // вывели результат в консоль
-//        print (result)
+        //        print (result)
         
-    self.title = "Номер билета:\(currentQuestion?.biletNumber), номер вопроса:\(currentQuestion?.questNumber)" // у viewController есть свойство title
-    self.questionList = result
+        
+        self.title = "Номер билета:\(currentQuestion?.biletNumber), номер вопроса:\(currentQuestionIndex + 1)" // у viewController есть свойство title
+        self.questionList = result
     }
     
-//------------------------------- END METODS    
+    //------------------------------- END METODS
     
     
 }
