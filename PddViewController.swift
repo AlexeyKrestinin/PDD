@@ -17,6 +17,8 @@ class PddViewController: UIViewController {
     
     @IBOutlet var tableView: UITableView!
     
+    @IBOutlet var progressView: UIProgressView!
+    
 //------------------------------- END STORYBOARD
     
 //------------------------------- PROPERTIES
@@ -52,6 +54,8 @@ class PddViewController: UIViewController {
         }
     }
     
+   
+    
     
 
 //------------------------------- END PROPERTIES
@@ -67,9 +71,22 @@ class PddViewController: UIViewController {
     
 //------------------------------- METODS
     
+    // Подготовка к переходу на экран с результатом 
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // если мы переходим на resultViewCOntroller
+        if let destVC = segue.destination as? ResultViewController,
+            // и параметром является объект типа Int
+            let scoreToShow = sender as? Int {
+            destVC.score = scoreToShow
+            
+        }
+    }
+    
     
     private func updateViews () {
         
+       
         let sectionsToReload = IndexSet(integer: 0)
         self.tableView.reloadSections(sectionsToReload, with: isOnScreen ? .left : .none) // вместо reloadData, при использовании анимации
         
@@ -83,7 +100,10 @@ class PddViewController: UIViewController {
         }, completion: { finished in
             // эта часть вызывается по завершении анимации
             self.questionText.text = self.currentQuestion?.title
-//            self.imageView.image = self.currentQuestion?.image
+            
+            self.imageView.image = self.currentQuestion?.image
+            
+            self.progressView.progress = Float(self.currentQuestionIndex) / 20
             
             UIView.animate(withDuration: duration, animations: {
                 self.questionText.alpha = 1
@@ -108,10 +128,10 @@ class PddViewController: UIViewController {
         let loader = DataLoader()
         let result = loader.loadData(fileName: "b2")
         // вывели результат в консоль
-        print (result)
+//        print (result)
         
-//        self.title = "\(result.biletNumber)" // у viewController есть свойство title
-    self.questionList = result.questions
+    self.title = "Номер билета:\(currentQuestion?.biletNumber), номер вопроса:\(currentQuestion?.questNumber)" // у viewController есть свойство title
+    self.questionList = result
     }
     
 //------------------------------- END METODS    
@@ -136,7 +156,9 @@ extension PddViewController:UITableViewDelegate {
             print ("дальше не пойдем")
             
             // вычислим счет и передадим дальше
-            let score = Double(self.score) / Double(questionList?.count ?? 1) * 100
+            
+            let score = self.score
+            
             // запустим переход на новый экран
             // название перехода SHow Result
             performSegue(withIdentifier: "Show Result", sender: Int(score))

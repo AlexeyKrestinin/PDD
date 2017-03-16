@@ -22,40 +22,24 @@ struct Question {
     private let imageName:String
     private let otvet:Int // номер правильного ответа
     
+// ЗАГРУЗКА КАРТИНКИ ИЗ ИНТЕРНЕТА
     
     var image:UIImage? {
-       return UIImage(named:imageName)
+        let url = URL(string: imageName)
+        guard let data = try? Data(contentsOf: url!) else {
+        return nil
+        }
+        return UIImage(data:data)
     }
     
-    //  ЗАГРУЗКА КАРТИНКИ ИЗ ИНТЕРНЕТА
-//    let  urlString = "http://mypressyImage.jpg"
-//    let request = NSURLRequest(URL: NSURL(string: urlString)!)
-//    
-//    NSURLSession.sharedSession().dataTaskWithRequest(request) { (data, response, error) -> Void in
-//    
-//    guard data != nil else {
-//    
-//    return
-//    }
-//    
-//    dispatch_async(dispatch_get_main_queue(), { () -> Void in
-//    self.myImageView.image = UIImage(data: data!)
-//    })
-//    
-//    }.resume()
-    
-    // НОВАЯ ЗАГРУЗКА
-//    let url = URL(string: image.url)
-//    let data = try? Data(contentsOf: url!) //make sure your image in this url does exist, otherwise unwrap in a if let check / try-catch
-//    imageView.image = UIImage(data: data!)
+ 
 
 
     init? (json:[String:Any]) {
         
         guard let title = json["quest"] as? String, // Заголовок равен вопросу
-            let imageName = json["realUrl"] as? String, // картинка?
             let otvet = json["otvet"] as? Int, // интовое значение ответа
-            
+            let imageName = json["realUrl"] as? String,
             let biletNumber = json["biletNumber"] as? Int, // номер билета
             let comments = json["comments"] as? String,
             let questNumber = json["questNumber"] as? Int
@@ -72,7 +56,8 @@ struct Question {
         }
         
         
-        self .title = title
+        
+        self.title = title
         self.imageName = imageName
         self.otvet = otvet
         self.answers = answers

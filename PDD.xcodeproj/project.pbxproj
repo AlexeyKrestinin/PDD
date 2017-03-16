@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8A25A9851E7A768800995199 /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A25A9841E7A768800995199 /* ResultViewController.swift */; };
+		8A9277D21E7B1531003243F4 /* BiletChooseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A9277D11E7B1530003243F4 /* BiletChooseViewController.swift */; };
 		8AC8DACB1E767E7F0020F10F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AC8DACA1E767E7F0020F10F /* AppDelegate.swift */; };
 		8AC8DAD01E767E7F0020F10F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8AC8DACE1E767E7F0020F10F /* Main.storyboard */; };
 		8AC8DAD21E767E7F0020F10F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8AC8DAD11E767E7F0020F10F /* Assets.xcassets */; };
@@ -27,6 +29,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8A25A9841E7A768800995199 /* ResultViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ResultViewController.swift; path = ../ResultViewController.swift; sourceTree = "<group>"; };
+		8A9277D11E7B1530003243F4 /* BiletChooseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BiletChooseViewController.swift; sourceTree = "<group>"; };
 		8AC8DAC71E767E7F0020F10F /* PDD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PDD.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8AC8DACA1E767E7F0020F10F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8AC8DACF1E767E7F0020F10F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -59,6 +63,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8A25A9861E7A76A000995199 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				8A9277D11E7B1530003243F4 /* BiletChooseViewController.swift */,
+				8AC8DADC1E7685A00020F10F /* PddViewController.swift */,
+				8A25A9841E7A768800995199 /* ResultViewController.swift */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
 		8AC8DABE1E767E7E0020F10F = {
 			isa = PBXGroup;
 			children = (
@@ -81,7 +95,7 @@
 			isa = PBXGroup;
 			children = (
 				8AC8DAE21E7689BB0020F10F /* Models */,
-				8AC8DADC1E7685A00020F10F /* PddViewController.swift */,
+				8A25A9861E7A76A000995199 /* ViewControllers */,
 				8AC8DAE31E7689EC0020F10F /* Support Files */,
 			);
 			path = PDD;
@@ -206,9 +220,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8A25A9851E7A768800995199 /* ResultViewController.swift in Sources */,
 				8AC8DACB1E767E7F0020F10F /* AppDelegate.swift in Sources */,
 				8AC8DAE11E7689AC0020F10F /* Question.swift in Sources */,
 				8AC8DADD1E7685A00020F10F /* PddViewController.swift in Sources */,
+				8A9277D21E7B1531003243F4 /* BiletChooseViewController.swift in Sources */,
 				8AC8DADF1E7689820020F10F /* DataLoader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -372,6 +388,7 @@
 				8AC8DADB1E767E7F0020F10F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
