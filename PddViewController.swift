@@ -23,6 +23,7 @@ class PddViewController: UIViewController {
     
     //------------------------------- PROPERTIES
     
+    var biletNum = "b2"
     // это вычисляемое свойство которое позволяет понять, виден ли вью нашего
     var isOnScreen:Bool {
         // проверим что у нас уже загружен вью и что у вью есть свойство window
@@ -77,6 +78,7 @@ class PddViewController: UIViewController {
             let scoreToShow = sender as? Int {
             destVC.score = scoreToShow
             
+            
         }
     }
     
@@ -115,6 +117,9 @@ class PddViewController: UIViewController {
     private func setup () {
         tableView.dataSource = self // tableView не знает что показывать. и чтобы это узнать обращается к self - questionsviewcontroller. Отвечает за то, ЧТО мы показываем.
         tableView.delegate = self // что делать, если произошло действие с tableView. МОжно ли показывать элементы удаления, что делать при нажатии на ячейку.
+        // Зададим динамическую высоту ячеек таблицы
+        self.tableView.rowHeight = UITableViewAutomaticDimension
+        self.tableView.estimatedRowHeight = 60.0
         loadData ()
         
     }
@@ -123,14 +128,17 @@ class PddViewController: UIViewController {
     private func loadData() {
         // создали объект, который загрузит данные
         let loader = DataLoader()
-        let result = loader.loadData(fileName: "b2")
+        let result = loader.loadData(fileName: biletNum)
         // вывели результат в консоль
         //        print (result)
         
         
-        self.title = "Номер билета:\(currentQuestion?.biletNumber), номер вопроса:\(currentQuestionIndex + 1)" // у viewController есть свойство title
+        self.title = "Номер билета:\(biletNum), номер вопроса:\(currentQuestionIndex + 1)" // у viewController есть свойство title
         self.questionList = result
+        
+        
     }
+    
     
     //------------------------------- END METODS
     
@@ -172,10 +180,16 @@ extension PddViewController:UITableViewDelegate {
 }
 
 extension PddViewController: UITableViewDataSource {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // если вдруг у нас нет текущего вопроса, то мы передадим значение по умолчанию
         return self.currentQuestion?.answers.count ?? 0
     }
+    
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)

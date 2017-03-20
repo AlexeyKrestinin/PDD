@@ -170,6 +170,7 @@
 				TargetAttributes = {
 					8AC8DAC61E767E7F0020F10F = {
 						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = B553CN2745;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -349,6 +350,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = B553CN2745;
 				INFOPLIST_FILE = PDD/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = home.PDD;
@@ -361,6 +363,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = B553CN2745;
 				INFOPLIST_FILE = PDD/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = home.PDD;
